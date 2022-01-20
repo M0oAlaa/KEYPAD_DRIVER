@@ -1,3 +1,10 @@
+/***********************************************************/
+/***********************************************************/
+/******************** Author : Mohamed Alaa ****************/
+/******************** Layer : HAL **************************/
+/******************** Driver : LED *************************/
+/***********************************************************/
+/***********************************************************/
 #include "../../APP/STD_TYPES.h"
 #include "../../APP/BIT_MATH.h"
 
@@ -8,6 +15,7 @@
 
 void LED_init(void)
 {
+	/*Set the directions of all leds' pins as OUTPUT*/
 	DIO_SETpinDir(LED_PORT,LED0_PIN,DIO_OUTPUT);
 	DIO_SETpinDir(LED_PORT,LED1_PIN,DIO_OUTPUT);
 	DIO_SETpinDir(LED_PORT,LED2_PIN,DIO_OUTPUT);
@@ -17,6 +25,7 @@ void LED_init(void)
 /*Implementation of Turn led on function*/
 void TurnLedON(uint8_t u8_LED)
 {
+	/*Turn the selected led ON*/
 	switch(u8_LED)
 	{
 	case LED0:DIO_SETpinVal(LED_PORT,LED0_PIN,DIO_HIGH);break;
@@ -29,6 +38,7 @@ void TurnLedON(uint8_t u8_LED)
 /*Implementation of Turn led off function*/
 void TurnLedOFF(uint8_t u8_LED)
 {
+	/*Turn the selected led OFF*/
 	switch(u8_LED)
 	{
 	case LED0:DIO_SETpinVal(LED_PORT,LED0_PIN,DIO_LOW);break;
@@ -41,6 +51,7 @@ void TurnLedOFF(uint8_t u8_LED)
 /*Implementation of blinking led function*/
 void BlinkLed(uint8_t u8_LED,uf32_t time_ms)
 {
+	/*Blink the selected led by the time entered*/
 	switch(u8_LED)
 	{
 	case LED0:	DIO_SETpinVal(LED_PORT,LED0_PIN,DIO_HIGH);
@@ -67,6 +78,7 @@ void BlinkLed(uint8_t u8_LED,uf32_t time_ms)
 void ToggleLED(uint8_t u8_LED)
 {
 	static uint8_t u8_state; //local variable to get the pin state
+	/*Get the state of the selected led*/
 	switch(u8_LED)
 	{
 	case LED0:DIO_GETpinVal(LED_PORT,LED0_PIN,&u8_state);break;
@@ -84,6 +96,7 @@ void ToggleLED(uint8_t u8_LED)
 	{
 		u8_state=DIO_LOW;
 	}
+	/*Give the selected led the current state*/
 	switch(u8_LED)
 	{
 	case LED0:DIO_SETpinVal(LED_PORT,LED0_PIN,u8_state);break;
